@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sooji7435 — Android Apps</title>
+  <meta name="description" content="Android developer. Building useful apps, one at a time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #161616;
+      --border:    #262626;
+      --text:      #e8e8e8;
+      --muted:     #888;
+      --accent:    #7c6af7;
+      --accent-dim:#3a3268;
+      --green:     #34c984;
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13, 13, 13, 0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 5% 80px;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--green);
+      background: rgba(52, 201, 132, 0.1);
+      border: 1px solid rgba(52, 201, 132, 0.25);
+      border-radius: 100px;
+      padding: 5px 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 60px 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* ── APP GRID ── */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .app-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: default;
+    }
+
+    .app-card:not(.coming-soon):hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-2px);
+    }
+
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .app-meta h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .app-meta .app-category {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .app-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(124, 106, 247, 0.1);
+      border: 1px solid rgba(124, 106, 247, 0.2);
+      color: #a78bfa;
+    }
+
+    .app-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .platform-badge {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(124, 106, 247, 0.1);
+      border: 1px solid rgba(124, 106, 247, 0.25);
+      border-radius: 8px;
+      padding: 7px 14px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .store-btn:hover {
+      background: rgba(124, 106, 247, 0.2);
+      border-color: var(--accent);
+    }
+
+    /* ── COMING SOON ── */
+    .coming-soon {
+      opacity: 0.45;
+      border-style: dashed;
+    }
+
+    .coming-soon .app-icon {
+      background: var(--border);
+    }
+
+    .coming-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--muted);
+      background: var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      align-self: flex-start;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 70px 5% 50px; }
+      .nav-links { display: none; }
+      footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">sooji7435</a>
+    <div class="nav-links">
+      <a href="#apps">Apps</a>
+      <a href="https://github.com/sooji7435" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Android Developer</div>
+    <h1>Useful apps,<br /><span>built with care.</span></h1>
+    <p>안드로이드 앱을 만들고 있어요. 일상의 불편함을 해결하는 작고 유용한 앱들을 꾸준히 출시할 예정입니다.</p>
+  </div>
+
+  <!-- APPS -->
+  <section id="apps">
+    <div class="section-label">Released Apps</div>
+    <div class="app-grid">
+
+      <!-- ── Snapledger ── -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">💳</div>
+          <div class="app-meta">
+            <h3>Snapledger</h3>
+            <div class="app-category">가계부 · Expense Tracker</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          카드 결제 알림을 자동으로 감지해서 가계부를 작성해주는 앱.
+          알림이 뜨는 순간 팝업으로 확인하고 저장까지 탭 한 번으로 끝.
+        </p>
+        <div class="app-tags">
+          <span class="tag">자동 감지</span>
+          <span class="tag">카드 결제</span>
+          <span class="tag">가계부</span>
+        </div>
+        <div class="app-footer">
+          <span class="platform-badge">
+            <!-- Android icon SVG -->
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.523 15.341a1 1 0 1 1-1.999 0 1 1 0 0 1 1.999 0zm-9.048 0a1 1 0 1 1-1.999 0 1 1 0 0 1 1.999 0zM2.513 8.105l1.654-2.863a.5.5 0 0 1 .866.5l-1.654 2.863A11.93 11.93 0 0 1 8 6.57V5h-.5a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1H16v1.57a11.93 11.93 0 0 1 4.621 2.035l-1.654-2.863a.5.5 0 0 1 .866-.5l1.654 2.863A11.98 11.98 0 0 1 24 14H0a11.98 11.98 0 0 1 2.513-5.895z"/>
+            </svg>
+            Android
+          </span>
+          <!-- Play Store 링크를 출시 후 아래 href에 넣으세요 -->
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.snapledger.app" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l12.37-12.37L12.5 7.55 3.18 23.76zm17.13-10.04L17.4 12l-2.91 2.91 2.91 2.91 2.93-1.73c.83-.49.83-1.65-.02-2.16zM3.01.24a1.04 1.04 0 0 0-.99.2C1.74.72 1.5 1.1 1.5 1.57v20.86c0 .47.24.85.52 1.13l.08.07L14.47 12 3.01.24zM16.32 4.28 3.95.07c-.32-.1-.64-.07-.93.07l11.35 11.35 2.85-2.85-1.9-4.36z"/></svg>
+            Play Store
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Coming Soon #1 ── -->
+      <div class="app-card coming-soon">
+        <div class="app-card-header">
+          <div class="app-icon">✦</div>
+          <div class="app-meta">
+            <h3>Next App</h3>
+            <div class="app-category">개발 중</div>
+          </div>
+        </div>
+        <p class="app-desc">다음 앱을 준비 중입니다.</p>
+        <div class="coming-badge">COMING SOON</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 sooji7435. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://github.com/sooji7435" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:bys0634@gmail.com">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
