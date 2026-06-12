@@ -5,22 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sooji7435 — iOS Apps</title>
   <meta name="description" content="iOS developer. Building useful apps, one at a time." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="sooji7435 — iOS Apps" />
+  <meta property="og:description" content="iOS 앱 개발자. 일상의 불편함을 해결하는 유용한 앱들을 만들고 있어요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sooji7435.github.io" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="sooji7435 — iOS Apps" />
+  <meta name="twitter:description" content="iOS 앱 개발자. 일상의 불편함을 해결하는 유용한 앱들을 만들고 있어요." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0d0d0d;
-      --surface:   #161616;
-      --border:    #262626;
-      --text:      #e8e8e8;
-      --muted:     #888;
+      --bg:        #0a0a0a;
+      --surface:   #141414;
+      --surface2:  #1a1a1a;
+      --border:    #242424;
+      --text:      #ebebeb;
+      --muted:     #777;
       --accent:    #7c6af7;
-      --accent-dim:#3a3268;
+      --accent-dim:#2e2a5e;
       --green:     #34c984;
-      --radius:    14px;
+      --radius:    16px;
     }
 
     html { scroll-behavior: smooth; }
@@ -31,6 +42,7 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── NAV ── */
@@ -41,107 +53,216 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 5%;
-      border-bottom: 1px solid var(--border);
-      background: rgba(13, 13, 13, 0.85);
-      backdrop-filter: blur(12px);
+      padding: 16px 6%;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-brand {
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
       color: var(--text);
       text-decoration: none;
     }
 
-    .nav-links { display: flex; gap: 28px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
 
     .nav-links a {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
 
+    .nav-cta {
+      font-size: 0.8rem !important;
+      font-weight: 500;
+      color: var(--text) !important;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      transition: border-color 0.2s, background 0.2s !important;
+    }
+    .nav-cta:hover {
+      border-color: var(--accent) !important;
+      background: var(--accent-dim) !important;
+    }
+
     /* ── HERO ── */
+    .hero-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 배경 글로우 */
+    .hero-wrap::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(124,106,247,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* 도트 패턴 */
+    .hero-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent);
+      pointer-events: none;
+    }
+
     .hero {
-      padding: 100px 5% 80px;
-      max-width: 760px;
+      position: relative;
+      z-index: 1;
+      padding: 110px 6% 90px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
       color: var(--green);
-      background: rgba(52, 201, 132, 0.1);
-      border: 1px solid rgba(52, 201, 132, 0.25);
+      background: rgba(52, 201, 132, 0.08);
+      border: 1px solid rgba(52, 201, 132, 0.2);
       border-radius: 100px;
-      padding: 5px 12px;
-      margin-bottom: 28px;
+      padding: 5px 13px;
+      margin-bottom: 32px;
+      letter-spacing: 0.3px;
     }
 
     .hero-badge::before {
       content: '';
-      width: 7px; height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--green);
-      animation: pulse 2s infinite;
+      animation: pulse 2.5s ease-in-out infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 600;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin-bottom: 18px;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
       color: #fff;
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      background: linear-gradient(135deg, var(--accent) 0%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero p {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--muted);
-      max-width: 480px;
-      line-height: 1.7;
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--text); }
+
+    /* ── STATS ── */
+    .stats-bar {
+      display: flex;
+      gap: 40px;
+      padding: 28px 6%;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 3px; }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
     }
 
     /* ── SECTION ── */
     section {
-      padding: 60px 5%;
+      padding: 64px 6%;
       max-width: 1100px;
       margin: 0 auto;
     }
 
     .section-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     /* ── APP GRID ── */
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
     }
 
     .app-card {
@@ -151,83 +272,98 @@
       padding: 28px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      transition: border-color 0.25s, transform 0.2s;
-      text-decoration: none;
-      color: inherit;
+      gap: 18px;
+      transition: border-color 0.25s, transform 0.22s, box-shadow 0.25s;
       cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 카드 상단 컬러 라인 */
+    .app-card:not(.coming-soon)::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #c084fc);
+      border-radius: var(--radius) var(--radius) 0 0;
     }
 
     .app-card:not(.coming-soon):hover {
-      border-color: var(--accent-dim);
-      transform: translateY(-2px);
+      border-color: rgba(124,106,247,0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(124,106,247,0.1);
     }
 
     .app-card-header {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .app-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #c084fc);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
       flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(124,106,247,0.25);
     }
 
     .app-icon img {
       width: 100%;
       height: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
       object-fit: cover;
     }
 
     .app-meta h3 {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
       color: #fff;
+      letter-spacing: -0.3px;
     }
 
     .app-meta .app-category {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       color: var(--muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .app-desc {
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
       flex: 1;
     }
 
     .app-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 6px;
     }
 
     .tag {
-      font-size: 0.7rem;
-      font-weight: 500;
-      padding: 4px 10px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 3px 10px;
       border-radius: 100px;
-      background: rgba(124, 106, 247, 0.1);
-      border: 1px solid rgba(124, 106, 247, 0.2);
+      background: rgba(124, 106, 247, 0.08);
+      border: 1px solid rgba(124, 106, 247, 0.18);
       color: #a78bfa;
+      letter-spacing: 0.2px;
     }
 
     .app-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid var(--border);
     }
 
     .platform-badge {
@@ -243,37 +379,35 @@
       align-items: center;
       gap: 6px;
       font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: rgba(124, 106, 247, 0.1);
-      border: 1px solid rgba(124, 106, 247, 0.25);
-      border-radius: 8px;
-      padding: 7px 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 9px;
+      padding: 8px 16px;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      transition: opacity 0.2s, transform 0.15s;
     }
 
-    .store-btn:hover {
-      background: rgba(124, 106, 247, 0.2);
-      border-color: var(--accent);
-    }
+    .store-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
     /* ── COMING SOON ── */
     .coming-soon {
-      opacity: 0.45;
+      opacity: 0.4;
       border-style: dashed;
     }
 
     .coming-soon .app-icon {
-      background: var(--border);
+      background: var(--surface2);
+      box-shadow: none;
     }
 
     .coming-badge {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       color: var(--muted);
-      background: var(--border);
+      background: var(--surface2);
+      border: 1px solid var(--border);
       border-radius: 6px;
       padding: 4px 10px;
       align-self: flex-start;
@@ -281,40 +415,38 @@
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 5%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 36px 6%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
       max-width: 1100px;
-      margin: 60px auto 0;
+      margin: 40px auto 0;
     }
 
     footer p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
+    .footer-links { display: flex; gap: 20px; }
 
     .footer-links a {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
     }
-
     .footer-links a:hover { color: var(--text); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .hero { padding: 70px 5% 50px; }
+    @media (max-width: 640px) {
+      .hero { padding: 80px 5% 60px; }
       .nav-links { display: none; }
+      .stats-bar { gap: 24px; padding: 24px 5%; }
+      section { padding: 48px 5%; }
       footer { justify-content: center; text-align: center; }
     }
   </style>
@@ -327,14 +459,42 @@
     <div class="nav-links">
       <a href="#apps">Apps</a>
       <a href="https://github.com/sooji7435" target="_blank" rel="noopener">GitHub</a>
+      <a href="#apps" class="nav-cta">앱 보기</a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="hero-badge">iOS Developer</div>
-    <h1>Useful apps,<br /><span>built with care.</span></h1>
-    <p>iOS 앱을 만들고 있어요. 일상의 불편함을 해결하는 작고 유용한 앱들을 꾸준히 출시할 예정입니다.</p>
+  <div class="hero-wrap">
+    <div class="hero">
+      <div class="hero-badge">iOS Developer</div>
+      <h1>Useful apps,<br /><span>built with care.</span></h1>
+      <p>iOS 앱을 만들고 있어요. 일상의 불편함을 해결하는 작고 유용한 앱들을 꾸준히 출시할 예정입니다.</p>
+      <div class="hero-actions">
+        <a href="#apps" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A8.001 8.001 0 0 1 4.07 11H5a1 1 0 0 1 0 2H4.07A8.001 8.001 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8.001 8.001 0 0 1 19.93 11H19a1 1 0 0 1 0-2h.93A8.001 8.001 0 0 1 13 16.93z"/></svg>
+          앱 둘러보기
+        </a>
+        <a href="https://github.com/sooji7435" target="_blank" rel="noopener" class="btn-secondary">
+          GitHub →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-value">1</span>
+      <span class="stat-label">출시된 앱</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">iOS</span>
+      <span class="stat-label">플랫폼</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">2025</span>
+      <span class="stat-label">개발 시작</span>
+    </div>
   </div>
 
   <!-- APPS -->
