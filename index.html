@@ -221,7 +221,7 @@
     .card-app    { grid-column: span 2; }
     .card-stat   { grid-column: span 1; }
     .card-about  { grid-column: span 1; }
-    .card-next   { grid-column: span 2; }
+    .card-onequest { grid-column: span 2; }
 
     /* App card */
     .card-app {
@@ -364,41 +364,76 @@
     }
     .contact-link:hover { text-decoration: underline; }
 
-    /* Next card */
-    .card-next {
-      background: var(--text);
+    /* OneQuest card */
+    .card-onequest {
+      background: #111;
       color: #fff;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 20px;
-      padding: 36px 40px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card-next-text h3 {
+    .card-onequest::before {
+      content: 'OneQuest';
+      position: absolute;
+      right: -10px;
+      top: -18px;
       font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
+      font-size: 5.5rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: -4px;
+    }
+
+    .oq-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .oq-title-group h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      margin-bottom: 8px;
+      color: #fff;
+      margin-bottom: 4px;
     }
 
-    .card-next-text p {
-      font-size: 0.88rem;
-      opacity: 0.55;
+    .oq-title-group .app-cat {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
     }
 
-    .card-next-badge {
+    .review-badge {
       flex-shrink: 0;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--coral);
-      background: rgba(255, 75, 43, 0.12);
-      border: 1px solid rgba(255, 75, 43, 0.25);
+      background: rgba(255, 75, 43, 0.15);
+      border: 1px solid rgba(255, 75, 43, 0.3);
       border-radius: 100px;
-      padding: 8px 18px;
+      padding: 6px 14px;
+    }
+
+    .oq-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+    }
+
+    .oq-tags .tag {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.65);
     }
 
     /* ── FOOTER ── */
@@ -439,8 +474,8 @@
       .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); letter-spacing: -2px; }
       .nav-links { display: none; }
       .bento { grid-template-columns: 1fr; }
-      .card-app, .card-next { grid-column: span 1; }
-      .card-next { flex-direction: column; align-items: flex-start; padding: 28px; }
+      .card-app, .card-onequest { grid-column: span 1; }
+      .card-onequest::before { font-size: 3.5rem; }
       .bento-wrap { padding: 40px 5%; }
       footer { justify-content: center; text-align: center; }
     }
@@ -476,7 +511,7 @@
     <div class="section-label">Apps & Info</div>
     <div class="bento">
 
-      <!-- App card -->
+      <!-- GasMap card -->
       <div class="bento-card card-app">
         <div class="card-app-top">
           <div class="app-icon">
@@ -506,8 +541,8 @@
 
       <!-- Stat card -->
       <div class="bento-card card-stat">
-        <div class="stat-number">1</div>
-        <div class="stat-label-big">출시된 앱</div>
+        <div class="stat-number">2</div>
+        <div class="stat-label-big">개발한 앱</div>
       </div>
 
       <!-- About card -->
@@ -519,13 +554,26 @@
         </a>
       </div>
 
-      <!-- Next card -->
-      <div class="bento-card card-next">
-        <div class="card-next-text">
-          <h3>다음 앱을 만들고 있어요</h3>
-          <p>곧 공개할게요. GitHub에서 먼저 확인하실 수 있어요.</p>
+      <!-- OneQuest card -->
+      <div class="bento-card card-onequest">
+        <div class="oq-top">
+          <div class="oq-title-group">
+            <h2>OneQuest</h2>
+            <div class="app-cat">하루 퀘스트 · Daily Quest &amp; Crew</div>
+          </div>
+          <div class="review-badge">App Store 심사 중</div>
         </div>
-        <div class="card-next-badge">Coming Soon</div>
+        <p class="oq-desc">
+          매일 하나의 퀘스트. 크루와 함께 사진으로 인증하고 스트릭을 쌓아요.
+          혼자는 작심삼일, 크루와 함께라면 달라집니다.
+        </p>
+        <div class="app-tags oq-tags">
+          <span class="tag">하루 루틴</span>
+          <span class="tag">크루 챌린지</span>
+          <span class="tag">사진 인증</span>
+          <span class="tag">스트릭</span>
+          <span class="tag">iOS</span>
+        </div>
       </div>
 
     </div>
