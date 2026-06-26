@@ -59,11 +59,9 @@
       text-decoration: none;
       letter-spacing: -0.5px;
     }
-
     .nav-brand span { color: var(--coral); }
 
     .nav-links { display: flex; gap: 32px; align-items: center; }
-
     .nav-links a {
       font-size: 0.85rem;
       font-weight: 500;
@@ -101,7 +99,6 @@
       text-transform: uppercase;
       margin-bottom: 24px;
     }
-
     .hero-eyebrow::before {
       content: '';
       display: block;
@@ -120,11 +117,7 @@
       color: var(--text);
       margin-bottom: 28px;
     }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--coral);
-    }
+    .hero h1 em { font-style: normal; color: var(--coral); }
 
     .hero-sub {
       font-size: 1.05rem;
@@ -134,12 +127,7 @@
       margin-bottom: 40px;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
     .btn-coral {
       display: inline-flex;
@@ -208,21 +196,21 @@
       border: 1px solid var(--border);
       transition: transform 0.2s, box-shadow 0.2s;
       overflow: hidden;
-      position: relative;
     }
-
     .bento-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.07);
     }
 
+    /* 카드 배치 */
     .card-app      { grid-column: span 2; }
     .card-stat     { grid-column: span 1; }
     .card-about    { grid-column: span 1; }
-    .card-onequest { grid-column: span 2; }
+    .card-mypill   { grid-column: span 2; }
+    .card-onequest { grid-column: span 3; }
 
-    /* App card */
-    .card-app {
+    /* 앱 카드 공통 */
+    .card-app, .card-mypill {
       background: #fff;
       display: flex;
       flex-direction: column;
@@ -244,12 +232,7 @@
       background: var(--surface);
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
-
-    .app-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
 
     .app-info h2 {
       font-family: 'Syne', sans-serif;
@@ -259,7 +242,6 @@
       color: var(--text);
       margin-bottom: 4px;
     }
-
     .app-info .app-cat {
       font-size: 0.8rem;
       color: var(--muted);
@@ -272,11 +254,7 @@
       line-height: 1.75;
     }
 
-    .app-tags {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
+    .app-tags { display: flex; gap: 7px; flex-wrap: wrap; }
 
     .tag {
       font-size: 0.7rem;
@@ -336,21 +314,18 @@
       flex-direction: column;
       gap: 16px;
     }
-
     .card-about h3 {
       font-family: 'Syne', sans-serif;
       font-size: 1.1rem;
       font-weight: 800;
       letter-spacing: 0.5px;
     }
-
     .card-about p {
       font-size: 0.87rem;
       color: var(--muted);
       line-height: 1.75;
       flex: 1;
     }
-
     .contact-link {
       display: inline-flex;
       align-items: center;
@@ -362,20 +337,34 @@
     }
     .contact-link:hover { text-decoration: underline; }
 
-    /* OneQuest card */
+    /* OneQuest card (full width, horizontal layout) */
     .card-onequest {
       background: #111;
       color: #fff;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 40px;
+      padding: 36px 40px;
     }
 
-    .oq-top {
+    .oq-left {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .oq-icon-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px dashed rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
     }
 
     .oq-title-group h2 {
@@ -386,11 +375,44 @@
       color: #fff;
       margin-bottom: 4px;
     }
-
     .oq-title-group .app-cat {
       font-size: 0.8rem;
       color: rgba(255,255,255,0.45);
       font-weight: 500;
+    }
+
+    .oq-divider {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+
+    .oq-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .oq-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+    }
+
+    .oq-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .oq-tags .tag {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.65);
     }
 
     .review-badge {
@@ -403,19 +425,7 @@
       background: rgba(255, 75, 43, 0.15);
       border: 1px solid rgba(255, 75, 43, 0.3);
       border-radius: 100px;
-      padding: 6px 14px;
-    }
-
-    .oq-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.75;
-    }
-
-    .oq-tags .tag {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.65);
+      padding: 7px 16px;
     }
 
     /* ── FOOTER ── */
@@ -430,17 +440,8 @@
       max-width: 1100px;
       margin: 20px auto 0;
     }
-
-    footer p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
     .footer-links a {
       font-size: 0.8rem;
       color: var(--muted);
@@ -456,7 +457,9 @@
       .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); letter-spacing: -1px; }
       .nav-links { display: none; }
       .bento { grid-template-columns: 1fr; }
-      .card-app, .card-onequest { grid-column: span 1; }
+      .card-app, .card-mypill, .card-onequest { grid-column: span 1; }
+      .card-onequest { flex-direction: column; padding: 28px; gap: 20px; }
+      .oq-divider { width: auto; height: 1px; }
       .bento-wrap { padding: 40px 5%; }
       footer { justify-content: center; text-align: center; }
     }
@@ -492,7 +495,7 @@
     <div class="section-label">Apps & Info</div>
     <div class="bento">
 
-      <!-- 싸유 card -->
+      <!-- 싸유 -->
       <div class="bento-card card-app">
         <div class="card-app-top">
           <div class="app-icon">
@@ -520,13 +523,13 @@
         </a>
       </div>
 
-      <!-- Stat card -->
+      <!-- Stat -->
       <div class="bento-card card-stat">
-        <div class="stat-number">2</div>
+        <div class="stat-number">3</div>
         <div class="stat-label-big">개발한 앱</div>
       </div>
 
-      <!-- About card -->
+      <!-- About -->
       <div class="bento-card card-about">
         <h3>안녕하세요 👋</h3>
         <p>iOS 개발자입니다. 혼자 기획하고 개발하고 디자인해요. 불편한 걸 발견하면 앱으로 만드는 게 습관이 됐어요.</p>
@@ -535,25 +538,59 @@
         </a>
       </div>
 
-      <!-- OneQuest card -->
+      <!-- MyPill -->
+      <div class="bento-card card-mypill">
+        <div class="card-app-top">
+          <div class="app-icon">
+            <img src="mypill-icon.png" alt="MyPill" />
+          </div>
+          <div class="app-info">
+            <h2>MyPill</h2>
+            <div class="app-cat">약 복용 관리 · Medication Tracker</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          매일 먹어야 하는 약과 영양제, 빠뜨리지 않도록 도와드려요.
+          복용 일정 관리부터 주간·월간 통계, 홈 화면 위젯까지 지원합니다.
+        </p>
+        <div class="app-tags">
+          <span class="tag">약 관리</span>
+          <span class="tag">캘린더</span>
+          <span class="tag">복용 통계</span>
+          <span class="tag">위젯</span>
+          <span class="tag">iOS</span>
+        </div>
+        <a class="app-store-btn" href="https://apps.apple.com/kr/app/id6760745593" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store에서 받기
+        </a>
+      </div>
+
+      <!-- OneQuest (full width) -->
       <div class="bento-card card-onequest">
-        <div class="oq-top">
+        <div class="oq-left">
+          <div class="oq-icon-placeholder">🎯</div>
           <div class="oq-title-group">
             <h2>OneQuest</h2>
             <div class="app-cat">하루 퀘스트 · Daily Quest &amp; Crew</div>
           </div>
-          <div class="review-badge">App Store 심사 중</div>
         </div>
-        <p class="oq-desc">
-          매일 하나의 퀘스트. 크루와 함께 사진으로 인증하고 스트릭을 쌓아요.
-          혼자는 작심삼일, 크루와 함께라면 달라집니다.
-        </p>
-        <div class="app-tags oq-tags">
-          <span class="tag">하루 루틴</span>
-          <span class="tag">크루 챌린지</span>
-          <span class="tag">사진 인증</span>
-          <span class="tag">스트릭</span>
-          <span class="tag">iOS</span>
+        <div class="oq-divider"></div>
+        <div class="oq-right">
+          <p class="oq-desc">
+            매일 하나의 퀘스트. 크루와 함께 사진으로 인증하고 스트릭을 쌓아요.
+            혼자는 작심삼일, 크루와 함께라면 달라집니다.
+          </p>
+          <div class="oq-bottom">
+            <div class="app-tags oq-tags">
+              <span class="tag">하루 루틴</span>
+              <span class="tag">크루 챌린지</span>
+              <span class="tag">사진 인증</span>
+              <span class="tag">스트릭</span>
+              <span class="tag">iOS</span>
+            </div>
+            <div class="review-badge">App Store 심사 중</div>
+          </div>
         </div>
       </div>
 
